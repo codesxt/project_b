@@ -9,6 +9,9 @@
 <body>
 <p class='notice'><%= notice %></p>
 <p class='alert'><%= alert %></p>
+<%= link_to "Aquí uno se hace una cuenta nueva hipersabrozona", new_user_registration_path %>
+<%= link_to "Aquí uno entra si ya tiene una cuenta choriza", new_user_session_path %>
+<%= link_to "CHAO", destroy_user_session_path, :method => :delete %>
 <%= yield %>
 
 </body>
