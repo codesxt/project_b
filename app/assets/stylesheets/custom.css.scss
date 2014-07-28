@@ -9,7 +9,7 @@ html, body	{
 }
 
 body	{
-	padding-top: 70px;
+	padding-top: 50px;
 }
 
 .top-banner	{
@@ -29,7 +29,8 @@ body	{
   background-color: $light-gray;
 }
 
-#form-container {
+.styled-container {
+  margin-top: 10px;
   background: #fff;
   /* border-radius */
   -webkit-border-radius: 5px;
@@ -39,4 +40,8 @@ body	{
   -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
   -moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
   box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}
+
+.users-list {
+  list-style: none;
 }

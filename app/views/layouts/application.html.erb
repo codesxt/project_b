@@ -9,13 +9,13 @@
 </head>
 <body>
 <div id="wrap">
-<% if true == true %>
-	<p class='alert-success' role='alert'><%= notice %></p>
-	<p class='alert-warning' role='alert'><%= alert %></p>
-<% end %>
-	<%= render "layouts/top_navbar" %>
-	<%= yield %>
+	<div class="liquid-container">
+		<%= render "layouts/top_navbar" %>
+		<div class="row">
+		<%= yield %>
+		</div>		
+	</div>
 </div>
-<%= render "layouts/footer" %>
+<%= render "layouts/footer" %>	
 </body>
 </html>
