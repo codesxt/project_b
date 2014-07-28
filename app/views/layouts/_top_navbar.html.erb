@@ -1,27 +1,29 @@
 <nav class="navbar navbar-default navbar-fixed-top top-banner" role="navigation">
-<% if true == false %>
-	<p class='alert-success' role='alert'><%= notice %></p>
-	<p class='alert-warning' role='alert'><%= alert %></p>
-<% end %>
+	<% if true == false %>
+		<p class='alert-success' role='alert'><%= notice %></p>
+		<p class='alert-warning' role='alert'><%= alert %></p>
+	<% end %>
 	<div class="container-fluid">
 		<div class="navbar-header">
-		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
 		        <span class="sr-only">Toggle navigation</span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		    </button>
-		    <%= link_to "COSA PARA PRESTARSE LIBROS", root_path, :class => "navbar-brand" %>
+		    <%= link_to "TÍTULO", root_path, :class => "navbar-brand" %>
 		</div>
-		<div class="navbar-right">
+		<div class="navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
 				<% if !user_signed_in? %>
-				<%= link_to "Entrar", new_user_session_path, :class=> "btn btn-default navbar-btn" %>
-				<%= link_to "Registrarse", new_user_registration_path, :class=> "btn btn-default navbar-btn" %>
+				<li><%= link_to "Entrar", new_user_session_path %></li>
+				<li><%= link_to "Registrarse", new_user_registration_path %></li>
 				<% else %>
-				<%= link_to "Usuarios", users_path, :class=> "btn btn-default navbar-btn" %>
-				<%= link_to "Editar Cuenta", edit_user_registration_path(current_user.id), :class=> "btn btn-default navbar-btn" %>
-				<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, :class=> "btn btn-default navbar-btn" %>
+				<li><%= link_to "Usuarios", users_path %></li>
+				<li><%= link_to "Editar Cuenta", edit_user_registration_path(current_user.id) %></li>
+				<li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %></li>
 				<% end %>
+			</ul>
 		</div>
 	</div>
 </nav>

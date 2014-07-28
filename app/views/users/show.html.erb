@@ -1,1 +1,14 @@
-<h2>Usuario: </h2><%= @user.name %>
+<div class="styled-container col-md-offset-2 col-md-8">
+	<div class="col-md-12">
+		<h2><%= @user.name %></h2>
+	</div>
+	<div class="col-md-1">
+		<%= gravatar_for @user, size: 52 %>
+	</div>
+	<div class="col-md-11">
+		Algo:<br/>
+		Algo:<br/>
+		Algo:<br/>
+		Algo:<br/>
+	</div>
+</div>
