@@ -1,0 +1,37 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-lg-offset-3 col-lg-6" >
+    <div id="form-container" class="container-fluid">
+      <h2 class="col-sm-offset-4">Nuevo Registro</h2>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label :name, "Nombre", :class => "col-sm-4 control-label" %>
+        <%= f.text_field :name, :placeholder => "Nombre", :class => "col-sm-7" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "Correo", :class => "col-sm-4 control-label" %>
+        <%= f.email_field :email, :autofocus => true, :placeholder => "Correo electrónico", :class => "col-sm-7" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, "Contraseña", :class => "col-sm-4 control-label" %>
+        <%= f.password_field :password, :class => "col-sm-7" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirmar Contraseña", :class => "col-sm-4 control-label" %>
+        <%= f.password_field :password_confirmation, :class => "col-sm-7" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Registrar", :class => "btn btn-primary col-sm-offset-5" %>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <%= render "devise/shared/links" %>
+          <br/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

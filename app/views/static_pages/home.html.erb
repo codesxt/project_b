@@ -1,5 +1,19 @@
 <% if user_signed_in? %>
-	<%= current_user.email %>
+	Nombre: <%= current_user.name %></br>
+	Correo: <%= current_user.email %>
+<% else %>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-3">
+				<H1>Bienvenido al sitio para prestarse libros</H1>
+				<h2>Aquí podrás compartir libros con tus amigos y blablablablablabla</h2>
+			</div>
+			<div class="col-lg-7" >
+				<%= image_tag("books.jpg", alt: "Una nena hipster") %>
+			</div>
+		</div>
+	</div>
 <% end %>
-<h1>Esto es una página de inicio supersensual</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+
+
+

@@ -1,0 +1,42 @@
+$soft-blue: #0099FF;
+$light-gray: #BBB;
+
+$footer-height: 80px;
+$footer-wrap: -82px;
+
+html, body	{
+	height: 100%;
+}
+
+body	{
+	padding-top: 70px;
+}
+
+.top-banner	{
+	background-color: $soft-blue;
+}
+
+#wrap {
+  min-height: 100%;
+  height: 100%;
+  /* The -82px value fixes the footer */
+  margin: 0 auto -82px 0;
+  padding: 0 0 $footer-height 0;
+}
+
+#footer {
+  height: $footer-height;
+  background-color: $light-gray;
+}
+
+#form-container {
+  background: #fff;
+  /* border-radius */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}

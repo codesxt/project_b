@@ -5,14 +5,17 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<p class='notice'><%= notice %></p>
-<p class='alert'><%= alert %></p>
-<%= link_to "Aquí uno se hace una cuenta nueva hipersabrozona", new_user_registration_path %>
-<%= link_to "Aquí uno entra si ya tiene una cuenta choriza", new_user_session_path %>
-<%= link_to "CHAO", destroy_user_session_path, :method => :delete %>
-<%= yield %>
-
+<div id="wrap">
+<% if true == true %>
+	<p class='alert-success' role='alert'><%= notice %></p>
+	<p class='alert-warning' role='alert'><%= alert %></p>
+<% end %>
+	<%= render "layouts/top_navbar" %>
+	<%= yield %>
+</div>
+<%= render "layouts/footer" %>
 </body>
 </html>
