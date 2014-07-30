@@ -31,6 +31,12 @@
 				<%= link_to "Registrarse", new_user_registration_path %></li>
 
 				<% else #Lo de abajo se ejecuta si el usuario está registrado%>
+				<% if controller_name == 'users' and action_name == 'show' and current_user.id == @user.id %>
+				<li class="active">
+				<% else %>
+				<li>
+				<% end %>
+				<%= link_to "Mi cuenta", current_user %></li>
 
 				<% if controller_name == 'registrations' and action_name == 'edit' %>
 				<li class="active">

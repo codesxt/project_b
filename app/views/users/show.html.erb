@@ -11,4 +11,35 @@
 		Algo:<br/>
 		Algo:<br/>
 	</div>
+	<div class="col-md-12">
+		<h2> Lista de amigos </h2>
+		<% for friendship in @user.friendships.where("status = 1") %>
+			<%= gravatar_for friendship.friend, size: 52 %>
+			<%= link_to friendship.friend.name, friendship.friend %>
+			<% if @user == current_user %>
+				<%= link_to "Eliminar amigo", friendship, :method => :delete, :class => "btn btn-danger" %>
+			<% end %>
+			<br/>
+		<% end %>
+		<% for friendship in @user.inverse_friendships.where("status = 1") %>
+			<%= gravatar_for friendship.user, size: 52 %>
+			<%= link_to friendship.user.name, friendship.user %>
+			<% if @user == current_user %>
+				<%= link_to "Eliminar amigo", friendship, :method => :delete, :class => "btn btn-danger" %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="col-md-12">
+		<% if @user == current_user %>
+		<h2> Solicitudes de amistad </h2>
+		<% if @user.inverse_friendships.where("status = 0").count == 0 %>
+			<p>No tienes solicitudes de amistad</p>
+		<% end %>
+		<% for friendship in @user.inverse_friendships.where("status = 0") %>
+			<%= gravatar_for friendship.user, size: 52 %>
+			<%= link_to friendship.user.name, friendship.user %>
+			<%= link_to "Aceptar solicitud", friendships_accept_path(friendship.id), :class => "btn btn-primary" %>
+		<% end %>
+		<% end %>
+	</div>
 </div>

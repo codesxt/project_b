@@ -1,7 +1,9 @@
 ProjectB::Application.routes.draw do
+  root "static_pages#home"
   devise_for :users, controllers: {registrations: 'registrations'}, :path => 'u'
   resources :users
-  root 'static_pages#home'
+  resources :friendships
+  get "friendships/accept/:id", to: "friendships#accept", as: :friendships_accept
   get "static_pages/home"
   get "static_pages/help"
   get "static_pages/about"
