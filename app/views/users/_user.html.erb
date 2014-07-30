@@ -1,46 +1,49 @@
 <li class="user_small col-md-12">
 	<div class="row">
-		<div class="col-md-1">
-  			<%= gravatar_for user, size: 52 %>
-	  	</div>
-	  	<div class="col-md-4">
-  			<%= link_to user.name, user %><br>
-  		</div>
-  		<div class="col-md-2 col-md-offset-3">
-  			<%= link_to "Ver Perfil", user, :class => "btn btn-default" %>
-  		</div>
-  		<div class="col-md-2">
-        <% if current_user != user %>
-          <% #Existe una invitación de amigo
-            if Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 0).count > 0 %>
-            <% friendship = Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 0).select(:id)
-              for friend in friendship
-                friendship_id = friend.id
-              end
-            %>
-            <%= link_to "Cancelar invitación", friendship_path(:id => friendship_id), :method => :delete, :class => "btn btn-danger" %>
-          <% #El usuario ya es amigo
-            elsif Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 1).count > 0 
-              friendship = Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 1).select(:id)
-              for friend in friendship
-                friend
-              end
+    <div class="col-xs-12 col-sm-12 col-md-12 panel panel-default panel-body">
+  		<div class="col-xs-4 col-sm-2 col-md-3">
+    			<%= gravatar_for user, size: 52 %>
+  	  	</div>
+  	  	<div class="col-xs-8 col-sm-6 user-data col-md-3">
+    			<%= link_to user.name, user %><br>
+    		</div>
+        <div class="clearfix visible-xs-block hidden-md-block"></div>
+    		<div class="col-xs-6 col-sm-2 col-md-2">
+    			<%= link_to "Ver Perfil", user, :class => "btn btn-default" %>
+    		</div>
+    		<div class="col-xs-6 col-sm-2 col-md-2">
+          <% if current_user != user %>
+            <% #Existe una invitación de amigo
+              if Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 0).count > 0 %>
+              <% friendship = Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 0).select(:id)
+                for friend in friendship
+                  friendship_id = friend.id
+                end
               %>
-              <%= link_to "Eliminar amigo", friend, :method => :delete, :class => "btn btn-danger" %>
-          <% #El usuario ya es amigo (En sentido inverso)
-            elsif Friendship.where(:user_id => user.id, :friend_id => current_user.id, :status => 1).count > 0 
-              friendship = Friendship.where(:user_id => user.id, :friend_id => current_user.id, :status => 1).select(:id)
-              for friend in friendship
-                friend
-              end
-              %>
-              <%= link_to "Eliminar amigo", friend, :method => :delete, :class => "btn btn-danger" %>
-          <% #El usuario no es amigo ni está invitado
-            else %>
-            <%= link_to "Añadir Amigo", friendships_path(:friend_id => user), :method => :post, :class => "btn btn-primary" %>
-          <% end %>
-          <% #Si el usuario actual es el mismo usuario de la lista, se deja el espacio en blanco %>
-        <% end %>  			
-  		</div>
+              <%= link_to "Cancelar invitación", friendship_path(:id => friendship_id), :method => :delete, :class => "btn btn-danger" %>
+            <% #El usuario ya es amigo
+              elsif Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 1).count > 0 
+                friendship = Friendship.where(:user_id => current_user.id, :friend_id => user.id, :status => 1).select(:id)
+                for friend in friendship
+                  friend
+                end
+                %>
+                <%= link_to "Eliminar amigo", friend, :method => :delete, :class => "btn btn-danger" %>
+            <% #El usuario ya es amigo (En sentido inverso)
+              elsif Friendship.where(:user_id => user.id, :friend_id => current_user.id, :status => 1).count > 0 
+                friendship = Friendship.where(:user_id => user.id, :friend_id => current_user.id, :status => 1).select(:id)
+                for friend in friendship
+                  friend
+                end
+                %>
+                <%= link_to "Eliminar amigo", friend, :method => :delete, :class => "btn btn-danger" %>
+            <% #El usuario no es amigo ni está invitado
+              else %>
+              <%= link_to "Añadir Amigo", friendships_path(:friend_id => user), :method => :post, :class => "btn btn-primary" %>
+            <% end %>
+            <% #Si el usuario actual es el mismo usuario de la lista, se deja el espacio en blanco %>
+          <% end %>  			
+    		</div>
+      </div>
   	</div>
 </li>
