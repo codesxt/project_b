@@ -27,6 +27,14 @@
               end
               %>
               <%= link_to "Eliminar amigo", friend, :method => :delete, :class => "btn btn-danger" %>
+          <% #El usuario ya es amigo (En sentido inverso)
+            elsif Friendship.where(:user_id => user.id, :friend_id => current_user.id, :status => 1).count > 0 
+              friendship = Friendship.where(:user_id => user.id, :friend_id => current_user.id, :status => 1).select(:id)
+              for friend in friendship
+                friend
+              end
+              %>
+              <%= link_to "Eliminar amigo", friend, :method => :delete, :class => "btn btn-danger" %>
           <% #El usuario no es amigo ni está invitado
             else %>
             <%= link_to "Añadir Amigo", friendships_path(:friend_id => user), :method => :post, :class => "btn btn-primary" %>
