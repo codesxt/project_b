@@ -13,10 +13,10 @@ class BooksController < ApplicationController
     @book = current_user.books.build(user_params)
     if @book.save
       flash[:success] = "¡Libro añadido!"
-      redirect_to root_path
+      redirect_to current_user
     else
-      flash[:success] = "¡NO!"
-      redirect_to root_path
+      flash[:success] = "¡Error al crear el libro! ¡A correr en círculos!"
+      redirect_to current_user
     end
   end
 
