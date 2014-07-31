@@ -38,6 +38,13 @@
 				<% end %>
 				<%= link_to "Mi cuenta", current_user %></li>
 
+				<% if controller_name == 'books' and action_name == 'new' %>
+				<li class="active">
+				<% else %>
+				<li>
+				<% end %>
+				<%= link_to "Añadir Libro", new_book_path %></li>
+
 				<% if controller_name == 'registrations' and action_name == 'edit' %>
 				<li class="active">
 				<% else %>

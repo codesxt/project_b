@@ -1,6 +1,8 @@
 $soft-blue: #0099FF;
 $light-gray: #BBB;
 
+$book-cover-brown: #6E2500;
+
 $footer-height: 80px;
 $footer-wrap: -82px;
 
@@ -42,7 +44,7 @@ body	{
   box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
 }
 
-.users-list {
+.user_small {
   list-style: none;
 }
 
@@ -51,4 +53,23 @@ body	{
 }
 .user-data a {
   display: block;
+}
+
+.book-cover {
+  width: 92px;
+  height: 150px;
+  background-color: $book-cover-brown;
+  display : table-cell;
+  vertical-align : middle;
+  float: none;
+  box-shadow: 0px 0px 2px 4px rgba(119, 119, 119, 0.75);
+  -moz-box-shadow: 0px 0px 2px 4px rgba(119, 119, 119, 0.75);
+  -webkit-box-shadow: 0px 0px 2px 4px rgba(119, 119, 119, 0.75);
+}
+
+.book-title {
+  display : block;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
 }

@@ -14,19 +14,7 @@
 	<div class="col-md-12">
 		<h2>Lista de Amigos</h2>
 		<% for friendship in Friendship.friends_by_user(@user.id) %>
-			<div class="col-xs-12 col-sm-6 col-md-6 panel panel-default panel-body">
-				<div class="col-md-2">
-				<%= gravatar_for friendship.friend, size: 52 %>
-				</div>
-				<div class="col-md-3">
-				<%= link_to friendship.friend.name, friendship.friend %>
-				</div>
-				<div class="col-md-1">
-				<% if @user == current_user %>
-					<%= link_to "Eliminar amigo", friendship, :method => :delete, :class => "btn btn-danger" %>
-				<% end %>
-				</div>
-			</div>
+			<%= render friendship.friend %>
 		<% end %>
 	</div>
 	<div class="col-md-12">
@@ -48,6 +36,12 @@
 					</div>
 				</div>
 			<% end %>
+		<% end %>
+	</div>
+	<div class="col-md-12">
+		<h2>Libros del usuario</h2>
+		<% for @book in @user.books %>
+			<%= render "books/book" %>
 		<% end %>
 	</div>
 </div>
