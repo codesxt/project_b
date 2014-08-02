@@ -11,14 +11,33 @@
 		Algo:<br/>
 		Algo:<br/>
 	</div>
-	<div class="col-md-12">
-		<h2>Lista de Amigos</h2>
-		<% for friendship in Friendship.friends_by_user(@user.id) %>
-			<%= render friendship.friend %>
-		<% end %>
-	</div>
-	<div class="col-md-12">
-		<% if @user == current_user %>
+	<ul class="nav nav-tabs" role="tablist">
+	  <li class="active"><a href="#books" role="tab" data-toggle="tab">Libros</a></li>
+	  <li><a href="#friends" role="tab" data-toggle="tab">Amigos</a></li>
+	  <% if @user == current_user %>
+	  <li><a href="#friend-requests" role="tab" data-toggle="tab">Solicitudes de amistad</a></li>
+	  <% end %>
+	</ul>
+	<div class="tab-content">
+	  <div class="tab-pane fade in active" id="books">
+	  	<div class="col-md-12">
+			<h2>Libros del usuario</h2>
+			<% for @book in @user.books %>
+				<%= render "books/book" %>
+			<% end %>
+		</div>
+	  </div>
+	  <div class="tab-pane fade" id="friends">
+	  	<div class="col-md-12">
+			<h2>Lista de Amigos</h2>
+			<% for friendship in Friendship.friends_by_user(@user.id) %>
+				<%= render friendship.friend %>
+			<% end %>
+		</div>
+	  </div>
+	  <% if @user == current_user %>
+	  <div class="tab-pane fade" id="friend-requests">
+	  	<div class="col-md-12">			
 			<h2> Solicitudes de amistad </h2>
 			<% if @user.inverse_friendships.where("status = 0").count == 0 %>
 				<p>No tienes solicitudes de amistad</p>
@@ -35,13 +54,9 @@
 					<%= link_to "Aceptar solicitud", friendships_accept_path(friendship.id), :class => "btn btn-primary" %>
 					</div>
 				</div>
-			<% end %>
-		<% end %>
-	</div>
-	<div class="col-md-12">
-		<h2>Libros del usuario</h2>
-		<% for @book in @user.books %>
-			<%= render "books/book" %>
-		<% end %>
-	</div>
+			<% end %>			
+		</div>
+	  </div>
+	  <% end %>
+	</div>	
 </div>

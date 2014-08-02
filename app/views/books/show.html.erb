@@ -1,2 +1,9 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="styled-container col-md-offset-2 col-md-8">
+	<div class="col-md-12">
+		Título: <%= @book.title %><br/>
+		Autor: <%= @book.author %><br/>
+		Género: <%= Genre.find(@book.genre).name %><br/>
+		Descripción: <%= @book.description %><br/>
+		Dueño: <%= link_to User.find(@book.user_id).name, User.find(@book.user_id) %>
+	</div>
+</div>

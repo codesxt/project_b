@@ -1,5 +1,6 @@
 <div class="col-md-2">
 	<div class="book-cover">
-		<div class="book-title"><%= @book.title %></div>
+		<div class="book-title"><%= link_to @book.title, book_path(@book) %></div>
 	</div>
+	<br/>
 </div>
