@@ -4,7 +4,11 @@ ProjectB::Application.routes.draw do
   resources :users
   resources :books
   resources :friendships
+  resources :loans
   get "friendships/accept/:id", to: "friendships#accept", as: :friendships_accept
+  get "loans/request/:id", to: "loans#request_loan", as: :request_loan
+  get "loans/accept/:id", to: "loans#accept", as: :accept_loan
+  get "loans/return/:id", to: "loans#book_returned", as: :book_returned
   get "static_pages/home"
   get "static_pages/help"
   get "static_pages/about"

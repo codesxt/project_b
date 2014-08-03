@@ -13,6 +13,9 @@ def make_users
   User.create!(name: "Bruno Faúndez Valenzuela",
                  email: "gameover_sxt_nah@hotmail.com",
                  password: "password")
+  User.create!(name: "William Shakespeare",
+                 email: "will@hotmail.com",
+                 password: "password")
   30.times do |n|
     name = Faker::Name.name
     email = Faker::Internet.email
@@ -37,7 +40,7 @@ end
 def make_friendships
   users = User.all
   5.times do
-    users.each { |user| user.friendships.create!(friend_id: rand(30), status: 1) }
+    users.each { |user| user.friendships.create!(friend_id: rand(30)+1 , status: 1) }
   end
 end
 

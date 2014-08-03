@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :friendships, :source => :user
   has_many :books, dependent: :destroy
+  has_many :loans
 end

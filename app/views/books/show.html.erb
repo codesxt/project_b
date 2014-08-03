@@ -6,4 +6,19 @@
 		Descripción: <%= @book.description %><br/>
 		Dueño: <%= link_to User.find(@book.user_id).name, User.find(@book.user_id) %>
 	</div>
+	<% if @book.user_id == current_user.id %>
+		<%= link_to "Eliminar libro", book_path(@book), :data => { :confirm => "¿Quieres eliminar el libro?" }, :method => :delete, :class => "btn btn-danger" %>
+		<%= link_to "Editar Libro", edit_book_path(@book.id), :class => "btn btn-default" %>
+	<% else %>
+		<% if Friendship.where(:user_id => current_user.id, :friend_id => @book.user_id).count > 0 ||
+			Friendship.where(:user_id => @book.user_id, :friend_id => current_user.id).count > 0 %>
+			<% if @book.loans.where(:user_id => current_user.id, :status => 0).count > 0 %>
+				Ya pediste el libro.
+			<% elsif @book.loans.where(:status => 1).count == 0 %>
+				<%= link_to "Pedir libro", request_loan_path(@book.id), :class => "btn btn-primary" %>
+			<% else %>
+				El libro está prestado
+			<% end %>
+		<% end %>
+	<% end %>
 </div>

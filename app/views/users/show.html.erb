@@ -6,17 +6,16 @@
 		<%= gravatar_for @user, size: 52 %>
 	</div>
 	<div class="col-md-11">
-		Algo:<br/>
-		Algo:<br/>
-		Algo:<br/>
-		Algo:<br/>
+		Aquí aparecerá información sobre el usuario.<br/><br/><br/><br/>
 	</div>
 	<ul class="nav nav-tabs" role="tablist">
 	  <li class="active"><a href="#books" role="tab" data-toggle="tab">Libros</a></li>
 	  <li><a href="#friends" role="tab" data-toggle="tab">Amigos</a></li>
 	  <% if @user == current_user %>
-	  <li><a href="#friend-requests" role="tab" data-toggle="tab">Solicitudes de amistad</a></li>
+	  <li><a href="#friend-requests" role="tab" data-toggle="tab">Solicitudes de amistad (<%= Friendship.where(:friend_id => current_user.id, :status => 0).count %>)</a></li>
 	  <% end %>
+	  <li><a href="#book-requests" role="tab" data-toggle="tab">Solicitudes de Libros (<%= Loan.n_requests_to_user(current_user) %>)</a></li>
+	  <li><a href="#book-loaned" role="tab" data-toggle="tab">Libros prestados (<%= Loan.n_books_loaned(current_user) %>)</a></li>
 	</ul>
 	<div class="tab-content">
 	  <div class="tab-pane fade in active" id="books">
@@ -56,6 +55,34 @@
 				</div>
 			<% end %>			
 		</div>
+	  </div>
+	  <div class="tab-pane fade" id="book-requests">
+	  	<div class="col-md-12">	
+	  		<h2>Solicitudes de Libros</h2>
+	  		<% if Loan.n_requests_to_user(current_user) == 0 %>
+	  			No te han solicitado libros
+	  		<% else %>
+	  			<% for loan in Loan.requests_to_user(current_user) %>
+	  				Libro: <%= loan.book.title %><br/>
+	  				Pedido por: <%= User.find(loan.user_id).name %><br/>
+	  				<%= link_to "Prestar Libro", accept_loan_path(:id => loan.id), :class => "btn btn-primary" %>
+	  				<%= link_to "Rechazar solicitud", loan_path(:id => loan.id), :data => { :confirm => "¿Rechazar la solicitud?" }, :method => :delete, :class => "btn btn-danger" %><br/>
+	  			<br/>
+	  			<% end %>
+	  		<% end %>
+	  	</div>
+	  </div>
+	  <div class="tab-pane fade" id="book-loaned">
+	  	<div class="col-md-12">	
+	  		<h2>Libros Prestados</h2>
+	  		<% for loan in Loan.books_loaned(current_user) %>
+	  				Libro: <%= loan.book.title %><br/>
+	  				Pedido por: <%= User.find(loan.user_id).name %><br/>
+	  				<%= link_to "Te devolvieron este libro", book_returned_path(:id => loan.id), :class => "btn btn-primary" %>
+	  				<br/>
+	  			<br/>
+	  			<% end %>
+	  	</div>
 	  </div>
 	  <% end %>
 	</div>	
